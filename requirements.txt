@@ -1,7 +1,2 @@
-pandas==2.1.2
-Pillow==10.1.0
-Pillow==10.1.0
-rembg==2.0.51
-Requests==2.31.0
-streamlit==1.28.1
-yt_dlp==2023.10.13
+
+
