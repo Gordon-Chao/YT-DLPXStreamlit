@@ -110,7 +110,6 @@ if is_valid_url(url):
             time.sleep(3)
         os.remove(filename.strip('\n'))
         
-view = st.button("view")
 st.button("Clear all address boxes", on_click=clear_text)
 
 st.markdown(
