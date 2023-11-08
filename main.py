@@ -6,7 +6,6 @@ import requests
 import re
 import subprocess
 import time
-from rembg import remove
 from PIL import Image
 from urllib.parse import urlparse, parse_qs
 
@@ -16,11 +15,11 @@ def clear_text():
     st.session_state["url"] = ""
     
 
-input_path = 'YT-DLP.png'
-output_path = 'YT-DLP-rembg.png'
-input = Image.open(input_path)
-output = remove(input)
-output.save(output_path)
+# input_path = 'YT-DLP.png'
+# output_path = 'YT-DLP-rembg.png'
+# input = Image.open(input_path)
+# output = remove(input)
+# output.save(output_path)
 
 
 def get_video_id(url):
@@ -31,8 +30,8 @@ def get_video_id(url):
     return None
 
 
-image = Image.open('YT-DLP-rembg.png', "r")
-st.image(image,width=200, use_column_width="auto")
+image = Image.open('Linzy.png', "r")
+st.image(image, use_column_width="auto")
 st.header("YT-DLP X Streamlit", )
 url = st.text_input("Enter Youtube Vedio URL:", key="url")
 video_id = get_video_id(url)
@@ -46,7 +45,8 @@ if url:
         video_tile = info_dict.get('title', None)
     video_length = subprocess.getoutput(f'yt-dlp {url} --print duration_string')
     st.subheader(f'{video_tile}\nLength: {video_length} seconds', divider='green') 
-
+    with st.expander('Vedio thumbnail image'):
+        st.image(thumbnail_url, use_column_width=True)
 
     
 def is_valid_url(url):
@@ -80,17 +80,16 @@ if is_valid_url(url):
     new_df = df.iloc[:, :9]
     indexs = new_df.index[:]
     store_index = []
-    user_input_container = st.empty()
+    
     for i in indexs:
         store_index.append(i)
     format_id = new_df['format_id'] #ID
     
-    with st.expander('Vedio thumbnail image'):
-        st.image(thumbnail_url, use_column_width=True)
+    
 
     df2 = [s for sublist in format_id.apply(str).str.split() for s in sublist if s] #Show format_id
-    with user_input_container.container():
-        format_id_type = st.selectbox("Select format ID to Download", options=df2, key='ID')
+    
+    format_id_type = st.selectbox("Select format ID to Download", options=df2, key='ID')
  
     my_download = st.button(f'Download format ID:{format_id_type}')
 
@@ -140,7 +139,7 @@ st.markdown(
 )
 
 st.markdown(
-    '<style>.st-cd{padding-bottom:10px}',unsafe_allow_html=True
+    '<style>.st-cd{padding-bottom:5px}',unsafe_allow_html=True
 
 )
 
@@ -150,7 +149,7 @@ st.markdown(
 )
 
 st.markdown(
-    '<style>.st-cg{line-height:1.6}',unsafe_allow_html=True
+    '<style>.st-cg{line-height:1.4}',unsafe_allow_html=True
 
 )
     
