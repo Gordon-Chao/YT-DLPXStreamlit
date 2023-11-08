@@ -15,8 +15,8 @@ def clear_text():
     st.session_state["url"] = ""
     
 
-# input_path = 'YT-DLP.png'
-# output_path = 'YT-DLP-rembg.png'
+# input_path = 'Linzy.png'
+# output_path = 'myLinzy.png'
 # input = Image.open(input_path)
 # output = remove(input)
 # output.save(output_path)
@@ -30,12 +30,12 @@ def get_video_id(url):
     return None
 
 
-image = Image.open('Linzy.png', "r")
+image = Image.open('myLinzy.png', "r")
 st.image(image, use_column_width="auto")
 st.header("YT-DLP X Streamlit", )
 url = st.text_input("Enter Youtube Vedio URL:", key="url")
 video_id = get_video_id(url)
-thumbnail_url = f"https://img.youtube.com/vi/{video_id}/0.jpg"
+thumbnail_url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
 
 
 
