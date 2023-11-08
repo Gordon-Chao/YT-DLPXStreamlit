@@ -32,9 +32,9 @@ def get_video_id(url):
 
 
 image = Image.open('YT-DLP-rembg.png', "r")
-st.image(image, use_column_width="auto")
+st.image(image,width=200, use_column_width="auto")
 st.header("YT-DLP X Streamlit", )
-url = st.text_input("Enter Youtube URL:", key="url")
+url = st.text_input("Enter Youtube Vedio URL:", key="url")
 video_id = get_video_id(url)
 thumbnail_url = f"https://img.youtube.com/vi/{video_id}/0.jpg"
 
@@ -80,20 +80,23 @@ if is_valid_url(url):
     new_df = df.iloc[:, :9]
     indexs = new_df.index[:]
     store_index = []
+    user_input_container = st.empty()
     for i in indexs:
         store_index.append(i)
     format_id = new_df['format_id'] #ID
     
-    with st.expander('Show thumbnail image'):
-        st.image(thumbnail_url)
+    with st.expander('Vedio thumbnail image'):
+        st.image(thumbnail_url, use_column_width=True)
 
     df2 = [s for sublist in format_id.apply(str).str.split() for s in sublist if s] #Show format_id
-    format_id_type = st.selectbox("Choose format id", options=df2, key='ID')
+    with user_input_container.container():
+        format_id_type = st.selectbox("Select format ID to Download", options=df2, key='ID')
+ 
+    my_download = st.button(f'Download format ID:{format_id_type}')
 
     with st.expander(f'Show available streams ({len(store_index)})'):
         st.dataframe(new_df.iloc[::-1].reset_index(drop=True))
-                 
-    my_download = st.button(f'Download itag:{format_id_type}')
+
     src_dir = "D:\Youtube vedio project"
     if my_download:
         get_video = subprocess.getoutput(f'yt-dlp -f {format_id_type} {url}')
@@ -109,6 +112,8 @@ if is_valid_url(url):
             st.success('Download completed')
             time.sleep(3)
         os.remove(filename.strip('\n'))
+else:
+    st.warning("Please enter a valid Youtube Vedio URL ")
         
 st.button("Clear all address boxes", on_click=clear_text)
 
@@ -118,14 +123,40 @@ st.markdown(
     )
 
 st.markdown(
-    '<style>h2{font-family:Times New Roman;font-weight:500}',unsafe_allow_html=True
+    '<style>h2{font-family:"IBM Plex Sans", sans-serif;font-weight:400;line-height:1;font-size: calc(1.3rem + .6vw)}',unsafe_allow_html=True
+)
+
+st.markdown(
+    '<style>.st-emotion-cache-eczf16{top: calc(-1.25rem + 0.5em);left:0px;}</style>', unsafe_allow_html=True
 )
 
 
-        
-        
-    
+st.markdown(
+    '<style>.st-cf{padding-right:14px}',unsafe_allow_html=True
+)
 
+st.markdown(
+    '<style>.st-ce{padding-left:14px}',unsafe_allow_html=True
+)
+
+st.markdown(
+    '<style>.st-cd{padding-bottom:10px}',unsafe_allow_html=True
+
+)
+
+st.markdown(
+    '<style>.st-cc{padding-top:10px}',unsafe_allow_html=True
+
+)
+
+st.markdown(
+    '<style>.st-cg{line-height:1.6}',unsafe_allow_html=True
+
+)
+    
+st.markdown(
+    '<style>h3{font-size:1.25rem}',unsafe_allow_html=True
+)
 
 
 
