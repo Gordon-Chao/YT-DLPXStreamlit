@@ -15,9 +15,9 @@ st.set_page_config(layout='centered')
 
 def clear_text():
     st.session_state["url"] = ""
-    
-
-
+    st.session_state['box'] = False
+    st.session_state['bpg'] = False
+    return
 
 def get_video_id(url):
     parsed = urlparse(url)
@@ -31,8 +31,8 @@ image = Image.open('myLinzy.png', "r")
 st.image(image, use_column_width="auto")
 st.header("YT-DLP X Streamlit", )
 url = st.text_input("Enter Youtube Vedio URL:", key="url")
-bprogressive = st.checkbox('Progressive streams', value=False, help=f'[What is progressive streams ?](https://pytube.io/en/latest/user/streams.html)')
-checkbox = st.checkbox('audio only', value=False)
+bprogressive = st.checkbox('Progressive streams', value=False, key='bpg', help=f'[What is progressive streams ?](https://pytube.io/en/latest/user/streams.html)')
+checkbox = st.checkbox('audio only', value=False, key='box')
 video_id = get_video_id(url)
 thumbnail_url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
 
