@@ -1,4 +1,4 @@
-# [yt-dlp](https://placehold.it/150/ffffff/ff0000) X [Streamlit](https://placehold.it/150/ffffff/ff0000)
+# [yt-dlp](https://placehold.it/150/ffffff/ff0000)X[Streamlit](https://placehold.it/150/ffffff/ff0000)
 
 streamlit app to download YouTube Videos using [yt-dlp](https://pypi.org/project/yt-dlp/#video-format-options)
 
