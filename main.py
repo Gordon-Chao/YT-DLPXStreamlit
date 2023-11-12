@@ -90,8 +90,6 @@ if is_valid_url(url):
     loc_df = df.loc[:, 'vbr':]
 
     
-
-    
     for index, size in enumerate(loc_df['filesize']):
         if pd.notna(size):
             if size < 1024 * 1024:
@@ -100,9 +98,9 @@ if is_valid_url(url):
                 loc_df.at[index, 'filesize'] = f'{round(size / (1024**2), 2):g}MB'
         
     concat_df = pd.concat([new_df, loc_df], axis=1).iloc[:, :10]
-    mod_df = concat_df.drop(concat_df[concat_df['format_note'] == 'storyboard'].index)
-    
-    store_index = []
+    mod_df = concat_df.drop(concat_df[(concat_df['format_note'] == 'storyboard') | (concat_df['ext'] == 'webm')].index).dropna(subset=['acodec'])
+    mods_df = mod_df.drop(mod_df[mod_df['resolution'] == 'audio only'].index).dropna(subset=['format_note'])
+    store_index = [] 
     
     if checkbox:
         new = mod_df.loc[mod_df['resolution'] == 'audio only']
@@ -119,6 +117,7 @@ if is_valid_url(url):
         for i in indexs:
             store_index.append(i)
     else:
+        mod_df = mods_df
         format_id = mod_df['format_id'] #ID
         indexs = mod_df.index[:]
         for i in indexs:
@@ -131,7 +130,6 @@ if is_valid_url(url):
     
     my_download = st.button(f'Download format ID: {format_id_type}')
     
-
     a = len(store_index)
     if checkbox and bprogressive:
         b = 'Not found'
@@ -186,25 +184,15 @@ st.markdown(
 
 
 st.markdown(
-    '<style>.st-cf{padding-right:14px}',unsafe_allow_html=True
+    '<style>.st-cf{padding-bottom:10px}',unsafe_allow_html=True
 )
 
 st.markdown(
-    '<style>.st-ce{padding-left:14px}',unsafe_allow_html=True
+    '<style>.st-ce{padding-top:10px}',unsafe_allow_html=True
 )
 
 st.markdown(
-    '<style>.st-cd{padding-bottom:7px}',unsafe_allow_html=True
-
-)
-
-st.markdown(
-    '<style>.st-cc{padding-top:7px}',unsafe_allow_html=True
-
-)
-
-st.markdown(
-    '<style>.st-cg{line-height:1.4}',unsafe_allow_html=True
+    '<style>.st-cg{line-height:1.6}',unsafe_allow_html=True
 
 )
     
