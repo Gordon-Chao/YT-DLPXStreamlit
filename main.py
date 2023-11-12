@@ -34,7 +34,7 @@ url = st.text_input("Enter Youtube Vedio URL:", key="url")
 bprogressive = st.checkbox('Progressive streams', value=False, key='bpg', help=f'[What is progressive streams ?](https://pytube.io/en/latest/user/streams.html)')
 checkbox = st.checkbox('audio only', value=False, key='box')
 video_id = get_video_id(url)
-thumbnail_url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+thumbnail_url = f"https://i.ytimg.com/vi/{video_id}/hq720.jpg"
 
 
 
