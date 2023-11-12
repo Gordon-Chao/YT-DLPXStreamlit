@@ -1,6 +1,4 @@
-'''diff
-- text in red
-'''
+<span style="color: red;">This is some red text.</span>
 
 streamlit app to download YouTube Videos using [yt-dlp](https://pypi.org/project/yt-dlp/#video-format-options)
 \
