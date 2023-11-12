@@ -190,7 +190,7 @@ st.markdown(
 )
 
 st.markdown(
-    '<style>.st-ce{padding-left:14px}',unsafe_allow_html=True
+    '<style>.st-ce{padding-left:3px}',unsafe_allow_html=True
 )
 
 st.markdown(
