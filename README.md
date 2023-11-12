@@ -1,4 +1,4 @@
-#yt-dlp X Streamlit
+# yt-dlp X Streamlit
 
 streamlit app to download YouTube Videos using [yt-dlp](https://pypi.org/project/yt-dlp/#video-format-options)
 \
