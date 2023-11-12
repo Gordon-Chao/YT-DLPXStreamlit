@@ -1,6 +1,6 @@
 '''css
 <style>
-  <span style="color: green"> yt-dlpXproject </span>
+  #<span style="color: green"> yt-dlpXproject </span>
 </style>
 
 streamlit app to download YouTube Videos using [yt-dlp](https://pypi.org/project/yt-dlp/#video-format-options)
